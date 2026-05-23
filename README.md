@@ -31,7 +31,7 @@ A clean, minimal boilerplate for building Google Chrome extensions using **Manif
 ## Getting Started
 
 1. Clone this repository
-2. Replace all `YOUR_EXTENSION_NAME`, `YOUR_EXTENSION_TAGLINE`, and `YOUR_EXTENSION_DESCRIPTION` placeholders
+2. Replace all `Your Extension Name`, `YOUR_EXTENSION_TAGLINE`, and `YOUR_EXTENSION_DESCRIPTION` placeholders
 3. Add your icons to the `icons/` folder (16x16, 48x48, 128x128 PNG)
 4. Open `chrome://extensions/` in Chrome
 5. Enable **Developer mode** (top-right toggle)

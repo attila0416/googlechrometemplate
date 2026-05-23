@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "YOUR_EXTENSION_NAME",
+  "name": "Your Extension Name",
   "version": "1.0.0",
   "description": "YOUR_EXTENSION_DESCRIPTION",
   "permissions": [
