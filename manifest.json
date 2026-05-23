@@ -26,11 +26,22 @@
       "js": ["content/content.js"],
       "run_at": "document_start",
       "all_frames": true
+    },
+    {
+      "matches": ["https://extensionpay.com/*"],
+      "js": ["extpay.js"],
+      "run_at": "document_start"
     }
   ],
   "background": {
     "service_worker": "background.js"
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["extpay.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",

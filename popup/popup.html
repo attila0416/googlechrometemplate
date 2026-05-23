@@ -7,30 +7,137 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1 class="title">YOUR_EXTENSION_NAME</h1>
-      <p class="subtitle">YOUR_EXTENSION_TAGLINE</p>
-    </div>
-
-    <div class="content">
-      <div class="toggle-row">
-        <div class="toggle-info">
-          <span class="toggle-label">Enable Feature</span>
-          <span class="toggle-description">Apply feature to all websites</span>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="featureToggle">
-          <span class="slider"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="footer">
-      <span id="statusText" class="status-text">Inactive</span>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p class="loading-text">Loading...</p>
     </div>
   </div>
 
+  <!-- Login Screen -->
+  <div id="loginScreen" class="login-screen" style="display: none;">
+    <div class="login-content">
+      <h1 class="login-title">Welcome to<br><span class="highlight">YOUR_EXTENSION_NAME</span></h1>
+      <div class="trial-info">
+        <div class="trial-feature">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Feature benefit 1</span>
+        </div>
+        <div class="trial-feature">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Feature benefit 2</span>
+        </div>
+        <div class="trial-feature">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Feature benefit 3</span>
+        </div>
+      </div>
+      <div class="button-group">
+        <div>
+          <button class="login-button login-button-gold" id="unlockProButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+            </svg>
+            Unlock Lifetime Access
+          </button>
+          <div class="btn-subtext">One-time payment • No subscription</div>
+        </div>
+        <button class="login-button login-button-green-outline" id="startTrialButton">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20"></path>
+          </svg>
+          Try Free for 7 Days
+        </button>
+        <button class="login-button login-button-tertiary" id="loginButton">
+          Already paid? Log In
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="container" style="display: none;">
+    <span class="backdrop"></span>
+    <span class="galaxy__container">
+      <span class="star star--static"></span>
+      <span class="star star--static"></span>
+      <span class="star star--static"></span>
+      <span class="star star--static"></span>
+    </span>
+    <span class="galaxy">
+      <span class="galaxy__ring">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+      </span>
+    </span>
+    <div class="profile-container">
+      <div class="profile-icon" id="profileIcon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <div class="profile-dropdown" id="profileDropdown" style="display: none;">
+        <div class="profile-menu-item" id="loginMenuItem">Login</div>
+        <div class="profile-menu-item" id="logoutMenuItem" style="display: none;">Logout</div>
+        <div class="profile-menu-item" id="manageSubscriptionMenuItem" style="display: none;">Manage Subscription</div>
+      </div>
+    </div>
+    <div class="badge" id="tierBadge">
+      Loading...
+    </div>
+    <div class="header">
+      <h1><span id="modeTitle">YOUR_EXTENSION_NAME</span><br><span class="highlight">Every Website</span></h1>
+    </div>
+    <p class="subtitle" id="subtitle">YOUR_EXTENSION_TAGLINE</p>
+    <button class="login-button login-button-gold" id="upgradeButtonOnTrialPage" style="display: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+      </svg>
+      Unlock Lifetime Access
+    </button>
+    <div class="content">
+      <span class="spark"></span>
+      <div class="content__inner">
+        <div class="toggle-container">
+          <span class="toggle-label">Enable Feature</span>
+          <label class="switch">
+            <input type="checkbox" id="featureToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../extpay.js"></script>
+  <script src="utils.js"></script>
+  <script src="ui-effects.js"></script>
+  <script src="payment.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
